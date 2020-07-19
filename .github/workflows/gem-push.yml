@@ -11,10 +11,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby 2.6
+
+    - name: Set up Ruby 2.5
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.6.x
+        ruby-version: 2.5
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Run tests
+      run: bundle exec rake test
+
+    - name: Build Gem
+      run: bundle exec rake build
 
     - name: Publish to GPR
       run: |
@@ -22,8 +32,6 @@ jobs:
         touch $HOME/.gem/credentials
         chmod 0600 $HOME/.gem/credentials
         printf -- "---\n:github: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-        bundle install
-        rake build
         gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} pkg/*.gem
       env:
         GEM_HOST_API_KEY: "Bearer ${{secrets.GITHUB_TOKEN}}"
@@ -37,7 +45,6 @@ jobs:
         printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
         git config user.email "sayantam@gmail.com"
         git config user.name "Sayantam Dey"
-        bundle install
-        rake release
+        bundle exec rake release
       env:
         GEM_HOST_API_KEY: "Bearer ${{secrets.RUBYGEMS_AUTH_TOKEN}}"

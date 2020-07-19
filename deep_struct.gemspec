@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "deep_struct/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "deep_struct"
+  spec.name          = "deep_hash_struct"
   spec.version       = DeepStruct::VERSION
   spec.authors       = ["Sayantam Dey"]
   spec.email         = ["sayantam@gmail.com"]
