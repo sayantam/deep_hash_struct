@@ -17,6 +17,9 @@ jobs:
       with:
         ruby-version: 2.5
 
+    - name: Update bundler
+      run: gem install bundler:1.17.3
+
     - name: Install dependencies
       run: bundle install
 
