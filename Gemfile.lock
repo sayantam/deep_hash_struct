@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    deep_struct (0.1.6)
+    deep_hash_struct (0.1.7)
 
 GEM
   remote: https://rubygems.org/
@@ -14,7 +14,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.17)
-  deep_struct!
+  deep_hash_struct!
   minitest (~> 5.0)
   rake (~> 10.0)
 
