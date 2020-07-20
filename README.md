@@ -8,7 +8,7 @@ object will have same level of nesting.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'deep_struct'
+gem 'deep_hash_struct'
 ```
 
 And then execute:
@@ -17,15 +17,30 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install deep_struct
+    $ gem install deep_hash_struct
 
 ## Usage
 
+### Example 1
 ```ruby
-input = { x: 1, y: { z: 2} }
+input = { x: 1, y: { z: 2 } }
 point = deep_struct(input)
 point.x #=> 1
 point.y.z #=> 2
+```
+
+### Example 2
+```ruby
+input = { foo: [{ x: [{ y: { z: 1 } }] }] }
+obj = deep_struct(input)
+obj.foo[0].x[0].y.z #=> 1
+```
+
+### Example 3
+```ruby
+input = { foo: { bar: [{ x: 1 }]} }
+obj = deep_struct(input)
+obj.foo.bar[0].x #=> 1
 ```
 
 ## Development

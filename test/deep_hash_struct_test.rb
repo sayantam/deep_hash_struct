@@ -1,10 +1,10 @@
 require "test_helper"
 
-describe DeepStruct do
-  include DeepStruct
+describe DeepHashStruct do
+  include DeepHashStruct
 
   it 'should have a version number' do
-    refute_nil ::DeepStruct::VERSION
+    refute_nil ::DeepHashStruct::VERSION
   end
 
   it 'should convert a deeply nested hash' do
@@ -55,6 +55,31 @@ describe DeepStruct do
     input = { x: 1, y: nest }
     obj = deep_struct(input)
     assert_equal(2, obj.y.z)
-    assert nest.equal?(input[:y])
+    assert_same(nest, input[:y])
+  end
+
+  it 'should convert array of hashes' do
+    nest = { foo: [{ x: 1 }, { y: { z: 2 } }] }
+    obj = deep_struct(nest)
+    assert_equal(1, obj.foo[0].x)
+    assert_equal(2, obj.foo[1].y.z)
+  end
+
+  it 'should convert array of hashes of array of hashes' do
+    nest = { foo: [{ x: [{ y: { z: 1 } }] }] }
+    obj = deep_struct(nest)
+    assert_equal(1, obj.foo[0].x[0].y.z)
+  end
+
+  it 'should convert multiple nested array of hashes' do
+    nest = { foo: [{ x: [{ y: { z: [{ bar: 1 }] } }] }] }
+    obj = deep_struct(nest)
+    assert_equal(1, obj.foo[0].x[0].y.z[0].bar)
+  end
+
+  it 'should convert a double nested array' do
+    nest = { foo: { bar: [{ x: 1 }]} }
+    obj = deep_struct(nest)
+    assert_equal(1, obj.foo.bar[0].x)
   end
 end

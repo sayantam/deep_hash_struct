@@ -1,16 +1,16 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "deep_struct/version"
+require "deep_hash_struct/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "deep_hash_struct"
-  spec.version       = DeepStruct::VERSION
+  spec.version       = DeepHashStruct::VERSION
   spec.authors       = ["Sayantam Dey"]
   spec.email         = ["sayantam@gmail.com"]
 
   spec.summary       = %q{Converts a (possibly nested) Hash to a (nested) Struct.}
-  spec.homepage      = "https://github.com/sayantam/deep_struct"
+  spec.homepage      = "https://github.com/sayantam/deep_hash_struct"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
