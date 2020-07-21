@@ -1,4 +1,4 @@
-# DeepStruct
+# DeepHashStruct
 
 Utility function to convert a Hash to a Struct. The Hash can be arbitrarily nested, the corresponding
 object will have same level of nesting.
@@ -20,6 +20,10 @@ Or install it yourself as:
     $ gem install deep_hash_struct
 
 ## Usage
+
+```ruby
+include DeepHashStruct
+```
 
 ### Example 1
 ```ruby

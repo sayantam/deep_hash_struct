@@ -50,4 +50,4 @@ jobs:
         git config user.name "Sayantam Dey"
         bundle exec rake release
       env:
-        GEM_HOST_API_KEY: "Bearer ${{secrets.RUBYGEMS_AUTH_TOKEN}}"
+        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
